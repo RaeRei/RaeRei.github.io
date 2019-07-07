@@ -1,7 +1,12 @@
-/* General styles */
-body {
+* General styles */
+html {
+    font-family: sans-serif;
+  }
+  
+  body {
     margin: 0;
   }
+
   h1 {
     color: blue;
     background-color: lightgrey;
