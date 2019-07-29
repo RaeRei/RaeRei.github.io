@@ -1,33 +1,37 @@
-const calculator = document.querySelector('.calculator')
-const button = calculator.querySelector('.calculator_button')
-
-   button.addEventListener('onclick', e => {
-       if(e.target.matches('button')){
-
-        const button = e.target
-        const action = button.dataset.action
-       }
-   })
-
-   if (!action) {
-        console.log('value button!')
-    
-
+window.onload = function (){
+	var elements = document.getElementsByTagName("input");
+	var display = document.querySelector('id');
+	var clear = document.getElementsByClassName('clearButton')[0];
+	
+	for(var i=0;i<elements.length;i+=1){
+		  if(elements[i].innerHTML === '='){
+			    elements[i].addEventListener("onclick", calculate(i));
+		  }else{
+			   elements[i].addEventListener("onclick", addtocurrentvalue(i));
+		  }
+	}
+	
+	
+	function addtocurrentvalue (i){
+		return function(){
+			if (elements[i].innerHTML === "÷") {
+               display.innerHTML  +=  "/ " ;
+      }else if(elements[i].innerHTML === "x"){
+			      screen.innerHTML += "*";
+		   } else{
+			   display.innerHTML  += elements[i].innerHTML;
+		   }
+	  };
    }
+ 
 
-   if (
-    action === 'add' ||
-    action === 'subtract' ||
-    action === 'multiply' ||
-    action === 'divide'
-  ) {
-        console.log('button mathButton!')
-  }
+   clearButton.onclick = function () {
+    display.innerHTML = '"';
+  }; 
 
-  if (action === "C") {
-    console.log('button clearButton!')
-
+ function calculate(i) {
+    return function () {
+        display.innerHTML = eval(display.innerHTML);
+    };
   }
-  i if (action === "calculate") {
-    console.log('eval!')
-  }
+};
