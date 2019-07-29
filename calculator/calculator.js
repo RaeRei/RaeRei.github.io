@@ -1,70 +1,33 @@
-var entries = [];
-var total = 0;
+const calculator = document.querySelector('.calculator')
+const button = calculator.querySelector('.calculator_button')
 
-var temp = '';
-$("button").on('click', function() {
- 	var val = $(this).text();
+   button.addEventListener('onclick', e => {
+       if(e.target.matches('button')){
 
-  // Got a number, add to temp
-  if (!isNaN(val) || val === '.') {
-    temp += val;
-    $("#answer").val(temp.substring(0,10));
-    
-  // Got some symbol other than equals, add temp to our entries
-  // then add our current symbol and clear temp
-  } else if (val === 'AC') {
-    entries = [];
-    temp = '';
-    total = 0;
-    $("#answer").val('')
+        const button = e.target
+        const action = button.dataset.action
+       }
+   })
 
-  // Clear last entry
-  } else if (val === 'CE') {
-    temp = '';
-    $("#answer").val('')
+   if (!action) {
+        console.log('value button!')
     
-  // Change multiply symbol to work with eval
-  } else if (val === 'x') {
-    entries.push(temp);
-    entries.push('*');
-    temp = '';
-    
-  // Change divide symbol to work with eval
-  } else if (val === '÷') {
-    entries.push(temp);
-    entries.push('/');
-    temp = '';
 
-  // Got the equals sign, perform calculation
-  } else if (val === '=') {
-  	entries.push(temp);
+   }
 
-    var nt = Number(entries[0]);
-    for (var i = 1; i < entries.length; i++) {
-      var nextNum = Number(entries[i+1])
-      var symbol = entries[i];
-      
-      if (symbol === '+') { nt += nextNum; } 
-      else if (symbol === '-') { nt -= nextNum; } 
-      else if (symbol === '*') { nt *= nextNum; } 
-      else if (symbol === '/') { nt /= nextNum; }
-      
-      i++;
-    }
-    
-    // Swap the '-' symbol so text input handles it correctly
-    if (nt < 0) {
-      nt = Math.abs(nt) + '-';
-    }
-    
-    $("#answer").val(nt);
-		entries = [];
-    temp = '';
-    
-  // Push number
-  } else {
-    entries.push(temp);
-    entries.push(val);
-    temp = '';
+   if (
+    action === 'add' ||
+    action === 'subtract' ||
+    action === 'multiply' ||
+    action === 'divide'
+  ) {
+        console.log('button mathButton!')
   }
-});
+
+  if (action === "C") {
+    console.log('button clearButton!')
+
+  }
+  i if (action === "calculate") {
+    console.log('eval!')
+  }
